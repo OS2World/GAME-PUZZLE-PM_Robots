@@ -1,0 +1,182 @@
+/*  ROBOTS.RC
+ *  Presentation Manager Robots v1.3
+ *  Copyright (c) 1993,1994,2002 by Kent Lundberg
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License as
+ *  published by the Free Software Foundation; either version 2 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  General Public License for more details (file GPL.TXT).
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+ *  02111-1307 USA
+ */
+
+#include <os2.h>
+#include "control.h"
+
+ICON ID_RESOURCE robots.ico
+
+BITMAP IDB_PLAYER       1player.bmp
+BITMAP IDB_PLAYERD      1playerd.bmp
+BITMAP IDB_HEAP         1heap.bmp
+BITMAP IDB_ROBOT        1robot.bmp
+BITMAP IDB_DIAMOND      1diamond.bmp
+BITMAP IDB_HPLAYER      2player.bmp
+BITMAP IDB_HPLAYERD     2playerd.bmp
+BITMAP IDB_HHEAP        2heap.bmp
+BITMAP IDB_HROBOT       2robot.bmp
+BITMAP IDB_HDIAMOND     2diamond.bmp
+
+POINTER IDP_UP          up.ptr
+POINTER IDP_DOWN        down.ptr
+POINTER IDP_RIGHT       right.ptr
+POINTER IDP_LEFT        left.ptr
+POINTER IDP_UPRIGHT     up_right.ptr
+POINTER IDP_DOWNRIGHT   dn_right.ptr
+POINTER IDP_UPLEFT      up_left.ptr
+POINTER IDP_DOWNLEFT    dn_left.ptr
+POINTER IDP_STAY        stay.ptr
+POINTER IDP_INACTIVE    inactive.ptr
+POINTER IDP_NOMOVE      nomove.ptr
+
+MENU ID_RESOURCE
+        {
+        SUBMENU "~Game",                  IDM_GAME
+                {
+                MENUITEM "~Help...",      IDM_HELP
+                MENUITEM "~About...",     IDM_ABOUT
+                MENUITEM SEPARATOR
+                MENUITEM "High ~Scores...", IDM_HSCORE
+                MENUITEM "~Clear Scores...", IDM_CLEAR
+                MENUITEM SEPARATOR
+                MENUITEM "E~xit",         IDM_QUIT
+                }
+        MENUITEM "~New Game",             IDM_NEW
+        MENUITEM "~Sonic Screwdriver",    IDM_SONIC
+        MENUITEM "~Teleport",             IDM_TELEP
+        MENUITEM "~Wait",                 IDM_WAIT
+        MENUITEM " Score: 0000  Flarp: 00", IDM_SCORE
+        }                
+
+DLGTEMPLATE IDD_HELP
+   {
+   DIALOG "Help for Presentation Manager Robots",0,16,12,320,124,, FCF_TITLEBAR|FCF_DLGBORDER
+      {
+      CTEXT "Presentation Manager Robots"       -1, 60, 108, 200, 8
+      ICON ID_RESOURCE                          -1, 60, 100,   0, 0
+      CTEXT "Keep Smiley alive by keeping"      -1, 10,  92, 300, 8
+      CTEXT "him away from the Killer Robots."  -1, 10,  84, 300, 8
+      CTEXT "The left mouse button moves Smiley in the direction of the pointer." -1, 10, 68, 300, 8
+      CTEXT "Clicking directly over Smiley takes a turn without making a move."   -1, 10, 60, 300, 8
+      CTEXT "The ""Sonic Screwdriver"" vaporizes robots adjacent to Smiley."      -1, 10, 52, 300, 8
+      CTEXT """Teleport"" moves Smiley to a random open space on the board."      -1, 10, 44, 300, 8
+      CTEXT """Wait"" waits until there is a robot breathing down his neck."      -1, 10, 36, 300, 8
+      CTEXT "Clicking the right mouse button is the same as pressing ""Wait""."   -1, 10, 28, 300, 8
+      DEFPUSHBUTTON "OK"        DID_OK, 140, 8, 40, 12, WS_GROUP
+      }
+   }
+
+DLGTEMPLATE IDD_ABOUT
+   {
+   DIALOG "About Presentation Manager Robots",0,32,24,240,100,, FCF_TITLEBAR|FCF_DLGBORDER
+      {
+      CTEXT "Presentation Manager Robots v1.3"          -1, 30, 84, 180, 8
+      ICON ID_RESOURCE                                  -1, 16, 76,   0, 0
+      CTEXT "This game is free software."                -1, 30, 68, 180, 8
+      CTEXT "Copyright (c) 1993,1994 by Kent Lundberg"  -1, 30, 58, 180, 8
+      CTEXT "Freely copy and distribute this program."  -1, 20, 44, 200, 8
+      CTEXT "For more information, see file GPL.TXT"  -1, 20, 36, 200, 8
+      CTEXT "for text of the General Public License."       -1, 20, 28, 200, 8
+      DEFPUSHBUTTON "OK"        DID_OK, 100, 8, 40, 12, WS_GROUP
+      }
+   }
+
+DLGTEMPLATE IDD_GETNAME
+   {
+   DIALOG "Congratulations...",0,32,60,160,80,, FCF_TITLEBAR|FCF_DLGBORDER
+      {
+      CTEXT "Hey, buddy!"                       -1, 30, 64, 100, 8
+      CTEXT "You got a high score."             -1, 30, 56, 100, 8
+      CTEXT "Please enter your name :"          -1, 20, 40, 120, 8
+      ENTRYFIELD "Your Name"           IDE_GETNAME, 25, 28, 110, 8, ES_MARGIN
+      DEFPUSHBUTTON "OK"        DID_OK, 60, 8, 40, 12, WS_GROUP
+      }
+   }
+
+#define HS_COL1 30
+#define HS_COL2 110
+#define HS_COL3 140
+
+DLGTEMPLATE IDD_HISCORES
+   {
+   DIALOG "All Time Greatest...",0,32,6,200,146,, FCF_TITLEBAR|FCF_DLGBORDER
+      {
+      DEFPUSHBUTTON "OK"        DID_OK, 80, 8, 40, 12, WS_GROUP|WS_TABSTOP
+      CTEXT "Presentation Manager Robots"       -1, 30, 130, 140,  8
+      CTEXT "Top Ten High Scores"               -1, 30, 122, 140,  8
+      LTEXT "Name"  -1, HS_COL1, 108, 30, 8
+      LTEXT "Level" -1, HS_COL2+4, 108, 30, 8
+      LTEXT "Score" -1, HS_COL3+8, 108, 30, 8
+      RTEXT "1." -1, 20, 100, 8, 8
+      RTEXT "2." -1, 20, 92, 8, 8
+      RTEXT "3." -1, 20, 84, 8, 8
+      RTEXT "4." -1, 20, 76, 8, 8
+      RTEXT "5." -1, 20, 68, 8, 8
+      RTEXT "6." -1, 20, 60, 8, 8
+      RTEXT "7." -1, 20, 52, 8, 8
+      RTEXT "8." -1, 20, 44, 8, 8
+      RTEXT "9." -1, 20, 36, 8, 8
+      RTEXT "10." -1, 10, 28, 18, 8
+      ENTRYFIELD ""                    IDE_HS,   HS_COL1,100, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+1, HS_COL1, 92, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+2, HS_COL1, 84, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+3, HS_COL1, 76, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+4, HS_COL1, 68, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+5, HS_COL1, 60, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+6, HS_COL1, 52, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+7, HS_COL1, 44, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+8, HS_COL1, 36, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+9, HS_COL1, 28, 80, 8, ES_READONLY
+      ENTRYFIELD ""                    IDE_HS+10, HS_COL2,100, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+11, HS_COL2, 92, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+12, HS_COL2, 84, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+13, HS_COL2, 76, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+14, HS_COL2, 68, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+15, HS_COL2, 60, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+16, HS_COL2, 52, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+17, HS_COL2, 44, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+18, HS_COL2, 36, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+19, HS_COL2, 28, 30, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+20, HS_COL3,100, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+21, HS_COL3, 92, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+22, HS_COL3, 84, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+23, HS_COL3, 76, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+24, HS_COL3, 68, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+25, HS_COL3, 60, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+26, HS_COL3, 52, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+27, HS_COL3, 44, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+28, HS_COL3, 36, 40, 8, ES_READONLY|ES_RIGHT
+      ENTRYFIELD ""                    IDE_HS+29, HS_COL3, 28, 40, 8, ES_READONLY|ES_RIGHT
+      }
+   }
+
+DLGTEMPLATE IDD_CLEAR
+   {
+   DIALOG "Clear High Scores...",0,32,60,200,60,, FCF_TITLEBAR|FCF_DLGBORDER
+      {
+      CTEXT "Do you really want to do this?"    -1, 30, 44, 140, 8
+      CTEXT "If you do, it cannot be undone."   -1, 30, 36, 140, 8
+      CTEXT "Plus, it's really, really rude."   -1, 30, 28, 140, 8
+      DEFPUSHBUTTON "Don't do it!"    DID_CANCEL, 10, 8, 80, 12, WS_GROUP
+      DEFPUSHBUTTON "OK, flush them."     DID_OK, 110, 8, 80, 12, WS_GROUP
+      }
+   }
+
+

@@ -1,0 +1,67 @@
+
+            Presentation Manager Robots v1.3
+     Copyright (c) 1993,1994,2002 by Kent Lundberg
+
+This program is a version of the classic UN*X game "robots" for     
+the OS/2 Presentation Manager.  The main idea is that you are chased
+by robots, and the object to is make them crash into each other before 
+they get you.
+
+It's Smiley against the Evil Killer Robots.  Smiley is hopelessly 
+outnumbered, but with your intellect, you might be able to save him.
+Fortunately, for you and Smiley, the robots have the stupid habit of
+crashing into each other in their pursuit.
+
+Everytime you make a move, the robots move a space closer to Smiley.
+
+The tools that you have available to you are a Sonic Screwdriver and
+a Teleporter Device.  The Sonic Screwdriver obliterates all the robots
+adjacent to Smiley, but can only be used once per level.  The Teleporter 
+Device can be used to get Smiley out of a tight spot, but each time you
+use it, you run the risk of teleporting next to a robot (which spells
+certain doom for Smiley).
+
+Clicking the left mouse button moves Smiley in the direction of the 
+mouse pointer (a question mark means that Smiley can't move in that
+direction).  Available moves are shown by the green diamonds around
+Smiley.  Clicking directly over Smiley takes a turn without making
+a move (letting the robots catch up).  The menu bar provides access to 
+the Teleporter and the Sonic Screwdriver.  The "Wait" button (or the 
+right mouse button) takes turns until there is a robot breathing down
+Smiley's neck.
+
+Points are awarded as follows : 10 points for every robot that crashes
+into another robot or into a robot heap, and 1 point for every robot 
+obliterated with the Sonic Screwdriver.  Bonuses are awarded for not
+using the Sonic Screwdriver on a particular level (50 points) and for
+successful teleports (1 point per visible robot).
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Special thanks to Brian Warkentine for his inspirational XROBOTS.
+There are many versions of robots around, and all the authors deserve
+credit.  This version was written entirely from scratch, July 1993.
+
+Revision History : 
+------------------
+Jul 1993 v1.1 initial release
+	      released as postcardware 
+	      compiles with free GCC/2 compiler
+
+Aug 1994 v1.2 higher resolution support
+	      compiles with IBM Cset++
+
+May 2002 v1.3 released as free software under GNU General Public License
+	      thanks to M. Iturbide (www.os2world.com/games) for asking

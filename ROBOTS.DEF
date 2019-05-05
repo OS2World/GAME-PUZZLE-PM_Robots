@@ -1,0 +1,11 @@
+NAME            CONTROL         WINDOWAPI
+DESCRIPTION     "Presentation Manager Robots (c) 1993 by Kent Lundberg"
+PROTMODE
+HEAPSIZE        1024
+STACKSIZE       8192
+EXPORTS         ClientWndProc
+                AboutDlgProc                
+                HelpDlgProc                
+                GetNameDlgProc
+                HiScoresDlgProc
+                ClearDlgProc

@@ -120,4 +120,4 @@ int Direction(GAMESTATE, int, int, int);
 void LoadHiScores(HISCORES *, GAMESTATE *);
 void SaveHiScores(HISCORES *, GAMESTATE *);
 void ClearHiScores(HISCORES *);
-
+

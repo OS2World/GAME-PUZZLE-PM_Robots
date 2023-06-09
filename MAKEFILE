@@ -1,39 +1,26 @@
-#/*  MAKEFILE
-# *  Presentation Manager Robots v1.3
-# *  Copyright (c) 1993,1994,2002 by Kent Lundberg
-# *
-# *  This program is free software; you can redistribute it and/or
-# *  modify it under the terms of the GNU General Public License as
-# *  published by the Free Software Foundation; either version 2 of the
-# *  License, or (at your option) any later version.
-# *
-# *  This program is distributed in the hope that it will be useful,
-# *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-# *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# *  General Public License for more details (file GPL.TXT).
-# *
-# *  You should have received a copy of the GNU General Public License
-# *  along with this program; if not, write to the Free Software
-# *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-# *  02111-1307 USA
-# */
+# nmake makefile
+#
+# Tools used:
+#  Compile::Watcom Resource Compiler
+#  Compile::GNU C
+#  Make: nmake or GNU make
+all : Robots.exe
 
-robots.exe: robots.obj game.obj hiscores.obj robots.def robots.res
-	icc -o robots.obj game.obj hiscores.obj robots.def
-	rc robots.res
+Robots.exe: robots.obj game.obj hiscores.obj robots.def robots.res
+	gcc -Zomf robots.obj game.obj hiscores.obj robots.def -o Robots.exe
+	wrc robots.res
 
-robots.obj: robots.c control.h 
-	icc -c robots.c
+robots.obj: robots.c control.h
+	gcc -Wall -Zomf -c -O2 robots.c -o robots.obj
 
-game.obj: game.c control.h 
-	icc -c game.c
+game.obj : game.c
+	gcc -Wall -Zomf -c -O2 game.c -o game.obj
 
-hiscores.obj: hiscores.c control.h 
-	icc -c hiscores.c
+hiscores.obj : hiscores.c
+	gcc -Wall -Zomf -c -O2 hiscores.c -o hiscores.obj
 
-robots.res: robots.rc control.h
-	rc -r robots
+robots.res : robots.rc robots.ico 
+	wrc -r robots.rc
 
-
-
-
+clean :
+	rm -rf *exe *RES *obj

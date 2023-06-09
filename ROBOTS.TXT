@@ -1,7 +1,12 @@
+Name: 		ROBOTS
+Descripcion: 	Presentation Manager Robots
+Date: 		2023-06-09
+Version:	1.4
+----------------------------   
 
-            Presentation Manager Robots v1.3
-     Copyright (c) 1993,1994,2002 by Kent Lundberg
 
+DESCRIPTION
+-----------
 This program is a version of the classic UN*X game "robots" for     
 the OS/2 Presentation Manager.  The main idea is that you are chased
 by robots, and the object to is make them crash into each other before 
@@ -54,14 +59,53 @@ Special thanks to Brian Warkentine for his inspirational XROBOTS.
 There are many versions of robots around, and all the authors deserve
 credit.  This version was written entirely from scratch, July 1993.
 
-Revision History : 
-------------------
-Jul 1993 v1.1 initial release
-	      released as postcardware 
-	      compiles with free GCC/2 compiler
+REQUIREMENTS
+------------
+This software requires libc and libcx.
+It is available on ArcaOS or/and can be installed with "yum install libc libcx" if you have ANPM installed. 
 
-Aug 1994 v1.2 higher resolution support
-	      compiles with IBM Cset++
 
-May 2002 v1.3 released as free software under GNU General Public License
-	      thanks to M. Iturbide (www.os2world.com/games) for asking
+HISTORY
+----------
+- 1.4 - 2023-05-15
+Changed version to compile on gcc and to run on ArcaOS 5.0.7.
+
+- 1.3
+Released as free software under GNU General Public License
+Thanks to M. Iturbide (www.os2world.com/games) for asking.
+
+- 1.2
+Higher resolution support
+Compiles with IBM Cset++
+
+- 1.1
+Initial release
+Released as postcardware 
+Compiles with free GCC/2 compiler 
+
+LICENSE
+-------
+GNU GPL V3
+
+COMPILE INSTRUCTIONS
+--------------------
+This version was modified to compile on ArcaOS with GCC 9 compiler. It also uses the Watcom Linker and Watcom Resource Compiler. 
+
+The requeriments for compile this version are:
+- yum install git gcc make libc-devel binutils watcom-wrc watcom-wlink-hll
+
+1) Remember to have correct header files your path. For GCC the correct ones are the included on the "libc-devel", not the ones from the OS/2 Toolkit. Check your config.sys for "SET INCLUDE=C:\usr\include"
+
+2) Since I'm using the Watcom Resource Compiler and Watcom Linker (open source) instead of the classic rc.exe and ilink.exe, add to your config.sys...
+ SET EMXOMFLD_RC_TYPE=WRC
+ SET EMXOMFLD_RC=wrc.exe
+ SET EMXOMFLD_LINKER=wl.exe
+ SET EMXOMFLD_TYPE=WLINK
+
+3) Run "make" to compile or "make 2>&1 |tee make.out" to compile and get the log file. A compile.cmd file was provided to run the compile process.
+
+
+AUTHORS
+-------
+- Martin Iturbide (2023)
+- Kent Lundberg

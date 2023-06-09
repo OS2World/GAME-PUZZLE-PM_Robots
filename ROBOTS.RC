@@ -1,21 +1,8 @@
 /*  ROBOTS.RC
- *  Presentation Manager Robots v1.3
+ *  Presentation Manager Robots v1.4
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
- *  This program is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU General Public License as
- *  published by the Free Software Foundation; either version 2 of the
- *  License, or (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  General Public License for more details (file GPL.TXT).
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
- *  02111-1307 USA
+ *  LICENSE: GNU GPL V3
  */
 
 #include <os2.h>
@@ -23,28 +10,28 @@
 
 ICON ID_RESOURCE robots.ico
 
-BITMAP IDB_PLAYER       1player.bmp
-BITMAP IDB_PLAYERD      1playerd.bmp
-BITMAP IDB_HEAP         1heap.bmp
-BITMAP IDB_ROBOT        1robot.bmp
-BITMAP IDB_DIAMOND      1diamond.bmp
-BITMAP IDB_HPLAYER      2player.bmp
-BITMAP IDB_HPLAYERD     2playerd.bmp
-BITMAP IDB_HHEAP        2heap.bmp
-BITMAP IDB_HROBOT       2robot.bmp
-BITMAP IDB_HDIAMOND     2diamond.bmp
+BITMAP IDB_PLAYER       .\img\1player.bmp
+BITMAP IDB_PLAYERD      .\img\1playerd.bmp
+BITMAP IDB_HEAP         .\img\1heap.bmp
+BITMAP IDB_ROBOT        .\img\1robot.bmp
+BITMAP IDB_DIAMOND      .\img\1diamond.bmp
+BITMAP IDB_HPLAYER      .\img\2player.bmp
+BITMAP IDB_HPLAYERD     .\img\2playerd.bmp
+BITMAP IDB_HHEAP        .\img\2heap.bmp
+BITMAP IDB_HROBOT       .\img\2robot.bmp
+BITMAP IDB_HDIAMOND     .\img\2diamond.bmp
 
-POINTER IDP_UP          up.ptr
-POINTER IDP_DOWN        down.ptr
-POINTER IDP_RIGHT       right.ptr
-POINTER IDP_LEFT        left.ptr
-POINTER IDP_UPRIGHT     up_right.ptr
-POINTER IDP_DOWNRIGHT   dn_right.ptr
-POINTER IDP_UPLEFT      up_left.ptr
-POINTER IDP_DOWNLEFT    dn_left.ptr
-POINTER IDP_STAY        stay.ptr
-POINTER IDP_INACTIVE    inactive.ptr
-POINTER IDP_NOMOVE      nomove.ptr
+POINTER IDP_UP          .\img\up.ptr
+POINTER IDP_DOWN        .\img\down.ptr
+POINTER IDP_RIGHT       .\img\right.ptr
+POINTER IDP_LEFT        .\img\left.ptr
+POINTER IDP_UPRIGHT     .\img\up_right.ptr
+POINTER IDP_DOWNRIGHT   .\img\dn_right.ptr
+POINTER IDP_UPLEFT      .\img\up_left.ptr
+POINTER IDP_DOWNLEFT    .\img\dn_left.ptr
+POINTER IDP_STAY        .\img\stay.ptr
+POINTER IDP_INACTIVE    .\img\inactive.ptr
+POINTER IDP_NOMOVE      .\img\nomove.ptr
 
 MENU ID_RESOURCE
         {
@@ -70,7 +57,7 @@ DLGTEMPLATE IDD_HELP
    DIALOG "Help for Presentation Manager Robots",0,16,12,320,124,, FCF_TITLEBAR|FCF_DLGBORDER
       {
       CTEXT "Presentation Manager Robots"       -1, 60, 108, 200, 8
-      ICON ID_RESOURCE                          -1, 60, 100,   0, 0
+      ICON ID_RESOURCE,                          -1, 60, 100,   0, 0
       CTEXT "Keep Smiley alive by keeping"      -1, 10,  92, 300, 8
       CTEXT "him away from the Killer Robots."  -1, 10,  84, 300, 8
       CTEXT "The left mouse button moves Smiley in the direction of the pointer." -1, 10, 68, 300, 8
@@ -87,10 +74,10 @@ DLGTEMPLATE IDD_ABOUT
    {
    DIALOG "About Presentation Manager Robots",0,32,24,240,100,, FCF_TITLEBAR|FCF_DLGBORDER
       {
-      CTEXT "Presentation Manager Robots v1.3"          -1, 30, 84, 180, 8
-      ICON ID_RESOURCE                                  -1, 16, 76,   0, 0
+      CTEXT "Presentation Manager Robots v1.4"          -1, 30, 84, 180, 8
+      ICON ID_RESOURCE,                                  -1, 16, 76,   0, 0
       CTEXT "This game is free software."                -1, 30, 68, 180, 8
-      CTEXT "Copyright (c) 1993,1994 by Kent Lundberg"  -1, 30, 58, 180, 8
+      CTEXT "Kent Lundberg"  				-1, 30, 58, 180, 8
       CTEXT "Freely copy and distribute this program."  -1, 20, 44, 200, 8
       CTEXT "For more information, see file GPL.TXT"  -1, 20, 36, 200, 8
       CTEXT "for text of the General Public License."       -1, 20, 28, 200, 8
@@ -179,4 +166,3 @@ DLGTEMPLATE IDD_CLEAR
       }
    }
 
-

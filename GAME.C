@@ -1,29 +1,18 @@
 /*  GAME.C
- *  Presentation Manager Robots v1.3
+ *  Presentation Manager Robots v1.4
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
- *  This program is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU General Public License as
- *  published by the Free Software Foundation; either version 2 of the
- *  License, or (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  General Public License for more details (file GPL.TXT).
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
- *  02111-1307 USA
+ *  LICENSE: GNU GPL V3
  */
 
 #define TRUE 1
 #define FALSE 0
+#include <stdlib.h>
 #include "control.h"
 
-void NewLevel(GAMESTATE *); 
+void NewLevel(GAMESTATE *);
 int RobotAdjacent(GAMESTATE);
+int AvailableMoves(GAMESTATE);
 
 void NewGame(GAMESTATE *pgs) {
    pgs->score = 0;
@@ -38,26 +27,26 @@ void EndGame(GAMESTATE *pgs) {
    pgs->active = FALSE;
    pgs->moves = 0;
    if (pgs->score > pgs->hiscore) {
-   }   
+   }
 }
 
 void NewLevel(GAMESTATE *pgs) {
    int icx, icy, icrobots;
 
    pgs->newlevel = TRUE;
-   pgs->playx = rand()%35; 
-   pgs->playy = rand()%20; 
-   if (!pgs->sonic_used) 
+   pgs->playx = rand()%35;
+   pgs->playy = rand()%20;
+   if (!pgs->sonic_used)
       pgs->score += 50;
    else {
       pgs->sonic_used = FALSE;
       pgs->sonic_reset = TRUE;
    }
    pgs->robots = icrobots = (++(pgs->level))*5;
-   for (icx = 0 ; icx < 35 ; icx++) 
+   for (icx = 0 ; icx < 35 ; icx++)
       for (icy = 0 ; icy < 20 ; icy++) {
          pgs->field[icx][icy] = EMPTY;
-   } 
+   }
    pgs->field[pgs->playx][pgs->playy] = ROBOT;
    while(icrobots--) {
       icx = rand()%35;
@@ -70,11 +59,11 @@ void NewLevel(GAMESTATE *pgs) {
 }
 
 void Teleport(GAMESTATE *pgs) {
-   do {    
-      pgs->playx = rand()%35; 
-      pgs->playy = rand()%20; 
+   do {
+      pgs->playx = rand()%35;
+      pgs->playy = rand()%20;
    } while (pgs->field[pgs->playx][pgs->playy] != EMPTY) ;
-   if (RobotAdjacent(*pgs))  
+   if (RobotAdjacent(*pgs))
       EndGame(pgs);
    else {
       pgs->score += pgs->robots;
@@ -94,8 +83,8 @@ void SonicScrew(GAMESTATE *pgs) {
    if (iendx == 35) iendx = 34;
    if (iendy == 20) iendy = 19;
    pgs->sonic_used = TRUE;
-   for (icx = istartx ; icx <= iendx ; icx++ ) 
-      for (icy = istarty ; icy <= iendy ; icy++ ) 
+   for (icx = istartx ; icx <= iendx ; icx++ )
+      for (icy = istarty ; icy <= iendy ; icy++ )
          if (pgs->field[icx][icy] == ROBOT) {
              pgs->field[icx][icy] = EMPTY;
              pgs->robots--;
@@ -109,24 +98,24 @@ void RobotChase(GAMESTATE *pgs) {
    int icx, icy, icxnew, icynew;
 
    pgs->newlevel = FALSE;
-   for (icx = 0 ; icx < 35 ; icx++) 
+   for (icx = 0 ; icx < 35 ; icx++)
       for (icy = 0 ; icy < 20 ; icy++) {
          old.field[icx][icy] = pgs->field[icx][icy];
          if (pgs->field[icx][icy] != HEAP)
             pgs->field[icx][icy] = EMPTY;
-      } 
-   for (icx = 0 ; icx < 35 ; icx++) 
-      for (icy = 0 ; icy < 20 ; icy++) 
+      }
+   for (icx = 0 ; icx < 35 ; icx++)
+      for (icy = 0 ; icy < 20 ; icy++)
          if (old.field[icx][icy] == ROBOT) {
             if (icx > pgs->playx )
                icxnew = icx - 1;
-            else if (icx < pgs->playx ) 
+            else if (icx < pgs->playx )
                icxnew = icx + 1;
             else
                icxnew = icx;
             if (icy > pgs->playy )
                icynew = icy - 1;
-            else if (icy < pgs->playy ) 
+            else if (icy < pgs->playy )
                icynew = icy + 1;
             else
                icynew = icy;
@@ -141,8 +130,8 @@ void RobotChase(GAMESTATE *pgs) {
             }
             else
                pgs->field[icxnew][icynew] = ROBOT;
-         }      
-   if (pgs->robots == 0) NewLevel(pgs);  
+         }
+   if (pgs->robots == 0) NewLevel(pgs);
    pgs->moves = AvailableMoves(*pgs);
 }
 
@@ -193,14 +182,14 @@ void MovePlayer(GAMESTATE *pgs, int direction) {
 }
 
 int RobotAdjacent(GAMESTATE gs) {
-   if ((gs.playx != 0 )&&(gs.field[gs.playx-1][gs.playy] == ROBOT) 
-       || (gs.playx != 34)&&(gs.field[gs.playx+1][gs.playy] == ROBOT)
-       || (gs.playy != 0 )&&(gs.field[gs.playx][gs.playy-1] == ROBOT) 
-       || (gs.playy != 19)&&(gs.field[gs.playx][gs.playy+1] == ROBOT) 
-       || (gs.playx != 0 )&&(gs.playy != 0 )&&(gs.field[gs.playx-1][gs.playy-1] == ROBOT) 
-       || (gs.playx != 0 )&&(gs.playy != 19)&&(gs.field[gs.playx-1][gs.playy+1] == ROBOT) 
-       || (gs.playx != 34)&&(gs.playy != 0 )&&(gs.field[gs.playx+1][gs.playy-1] == ROBOT) 
-       || (gs.playx != 34)&&(gs.playy != 19)&&(gs.field[gs.playx+1][gs.playy+1] == ROBOT)) 
+   if (((gs.playx != 0 )&&(gs.field[gs.playx-1][gs.playy] == ROBOT))
+       || ((gs.playx != 34)&&(gs.field[gs.playx+1][gs.playy] == ROBOT))
+       || ((gs.playy != 0 )&&(gs.field[gs.playx][gs.playy-1] == ROBOT))
+       || ((gs.playy != 19)&&(gs.field[gs.playx][gs.playy+1] == ROBOT))
+       || ((gs.playx != 0 )&&(gs.playy != 0 )&&(gs.field[gs.playx-1][gs.playy-1] == ROBOT))
+       || ((gs.playx != 0 )&&(gs.playy != 19)&&(gs.field[gs.playx-1][gs.playy+1] == ROBOT))
+       || ((gs.playx != 34)&&(gs.playy != 0 )&&(gs.field[gs.playx+1][gs.playy-1] == ROBOT))
+       || ((gs.playx != 34)&&(gs.playy != 19)&&(gs.field[gs.playx+1][gs.playy+1] == ROBOT)))
       return TRUE;
    else
       return FALSE;
@@ -210,36 +199,37 @@ int Direction(GAMESTATE gs, int cx, int cy, int sMapSize) {
    int result,
        cpx = cx - sMapSize*gs.playx - sMapSize/2,
        cpy = cy - sMapSize*gs.playy - sMapSize/2;
-   
+
    if ( cpx*cpx + cpy*cpy < 256)
       return (gs.moves&MOVE_S ? IDP_STAY : IDP_NOMOVE);
    result = 0;
-   if ( cpy > abs(cpx/2) ) 
+   if ( cpy > abs(cpx/2) )
       result |= IDP_UP;
    else if ( cpy < -abs(cpx/2) )
       result |= IDP_DOWN;
-   if ( cpx > abs(cpy/2) ) 
+   if ( cpx > abs(cpy/2) )
       result |= IDP_RIGHT;
    else if ( cpx < -abs(cpy/2) )
       result |= IDP_LEFT;
    switch (result) {
-      case IDP_UP:    
+      case IDP_UP:
          return (gs.moves&MOVE_U ? IDP_UP : IDP_NOMOVE);
-      case IDP_DOWN:  
+      case IDP_DOWN:
          return (gs.moves&MOVE_D ? IDP_DOWN : IDP_NOMOVE);
-      case IDP_LEFT:  
+      case IDP_LEFT:
          return (gs.moves&MOVE_L ? IDP_LEFT : IDP_NOMOVE);
-      case IDP_RIGHT: 
+      case IDP_RIGHT:
          return (gs.moves&MOVE_R ? IDP_RIGHT : IDP_NOMOVE);
-      case IDP_UPLEFT:    
+      case IDP_UPLEFT:
          return (gs.moves&MOVE_UL ? IDP_UPLEFT : IDP_NOMOVE);
-      case IDP_UPRIGHT:   
+      case IDP_UPRIGHT:
          return (gs.moves&MOVE_UR ? IDP_UPRIGHT : IDP_NOMOVE);
-      case IDP_DOWNLEFT:  
+      case IDP_DOWNLEFT:
          return (gs.moves&MOVE_DL ? IDP_DOWNLEFT : IDP_NOMOVE);
-      case IDP_DOWNRIGHT: 
+      case IDP_DOWNRIGHT:
          return (gs.moves&MOVE_DR ? IDP_DOWNRIGHT : IDP_NOMOVE);
    }
+   return 0;
 }
 
 int AvailableMoves(GAMESTATE gs) {
@@ -294,7 +284,7 @@ int AvailableMoves(GAMESTATE gs) {
          result &= ~(MOVE_U | MOVE_D | MOVE_DR | MOVE_UR | MOVE_R | MOVE_S);
    if (gs.playx < 33)
       if (gs.field[gs.playx+2][gs.playy] == ROBOT)
-         result &= ~(MOVE_UR | MOVE_R | MOVE_DR); 
+         result &= ~(MOVE_UR | MOVE_R | MOVE_DR);
    if (gs.playy > 0) {
       if (gs.playx > 1)
          if (gs.field[gs.playx-2][gs.playy-1] == ROBOT)
@@ -351,4 +341,4 @@ int AvailableMoves(GAMESTATE gs) {
             result &= ~MOVE_DR; }
    return result;
 }
-
+

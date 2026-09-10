@@ -1,21 +1,8 @@
 /*  CONTROL.H
- *  Presentation Manager Robots v1.3
+ *  Presentation Manager Robots v1.4
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
- *  This program is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU General Public License as
- *  published by the Free Software Foundation; either version 2 of the
- *  License, or (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  General Public License for more details (file GPL.TXT).
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
- *  02111-1307 USA
+ *  LICENSE: GNU GPL V3
  */
 
 #define ID_RESOURCE     1
@@ -27,6 +14,7 @@
 #define IDE_GETNAME     7
 #define IDD_CLEAR       8
 
+/* Game menu items (original IDs preserved) */
 #define IDM_GAME        20
 #define IDM_NEW         21
 #define IDM_HELP        22
@@ -38,6 +26,28 @@
 #define IDM_SONIC       28
 #define IDM_SCORE       29
 #define IDM_CLEAR       30
+
+/* Standard Plan items - Game menu */
+#define IDM_EXIT        100
+#define IDM_PAUSE       101
+
+/* Standard Plan items - Options menu */
+#define IDM_BACKGRND    200
+#define IDM_FRAME_CTRL  201
+#define IDM_SAVEONEXIT  202
+
+/* Language submenu items (300-399) */
+#define IDM_LANG_EN     300
+#define IDM_LANG_ES     301
+#define IDM_LANG_NL     302
+#define IDM_LANG_DE     303
+#define IDM_LANG_FR     304
+#define IDM_LANG_IT     305
+
+/* Submenu cascade IDs (1000-1099) */
+#define IDM_SUBMENU_OPTS  1001
+#define IDM_SUBMENU_LANG  1002
+#define IDM_SUBMENU_HELP  1003
 
 #define IDB_PLAYER      40
 #define IDB_PLAYERD     41

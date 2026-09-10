@@ -8,7 +8,7 @@
 #include <os2.h>
 #include "control.h"
 
-ICON ID_RESOURCE robots.ico
+ICON ID_RESOURCE ROBOTS.ICO
 
 BITMAP IDB_PLAYER       .\img\1player.bmp
 BITMAP IDB_PLAYERD      .\img\1playerd.bmp
@@ -35,26 +35,62 @@ POINTER IDP_NOMOVE      .\img\nomove.ptr
 
 MENU ID_RESOURCE
         {
-        SUBMENU "~Game",                  IDM_GAME
+        SUBMENU "~Game",                        IDM_GAME
                 {
-                MENUITEM "~Help...",      IDM_HELP
-                MENUITEM "~About...",     IDM_ABOUT
+                MENUITEM "~New Game",            IDM_NEW
                 MENUITEM SEPARATOR
-                MENUITEM "High ~Scores...", IDM_HSCORE
-                MENUITEM "~Clear Scores...", IDM_CLEAR
+                MENUITEM "~Sonic Screwdriver",   IDM_SONIC
+                MENUITEM "~Teleport",            IDM_TELEP
+                MENUITEM "~Wait",                IDM_WAIT
                 MENUITEM SEPARATOR
-                MENUITEM "E~xit",         IDM_QUIT
+                MENUITEM "~High Scores...",      IDM_HSCORE
+                MENUITEM "~Clear Scores...",     IDM_CLEAR
+                MENUITEM SEPARATOR
+                MENUITEM "~Pause\tCtrl+P",       IDM_PAUSE
+                MENUITEM SEPARATOR
+                MENUITEM "E~xit\tCtrl+X",        IDM_EXIT
                 }
-        MENUITEM "~New Game",             IDM_NEW
-        MENUITEM "~Sonic Screwdriver",    IDM_SONIC
-        MENUITEM "~Teleport",             IDM_TELEP
-        MENUITEM "~Wait",                 IDM_WAIT
-        MENUITEM " Score: 0000  Flarp: 00", IDM_SCORE
-        }                
+        MENUITEM " Score: 0000  Level: 00",     IDM_SCORE
+        SUBMENU "~Options",                     IDM_SUBMENU_OPTS
+                {
+                SUBMENU "~Language",            IDM_SUBMENU_LANG
+                        {
+                        MENUITEM "English",      IDM_LANG_EN
+                        MENUITEM "Espanol",      IDM_LANG_ES
+                        MENUITEM "Nederlands",   IDM_LANG_NL
+                        MENUITEM "Deutsch",      IDM_LANG_DE
+                        MENUITEM "Francais",     IDM_LANG_FR
+                        MENUITEM "Italiano",     IDM_LANG_IT
+                        }
+                MENUITEM SEPARATOR
+                MENUITEM "~Save settings on exit",  IDM_SAVEONEXIT
+                MENUITEM SEPARATOR
+                MENUITEM "~Background Run\tCtrl+B", IDM_BACKGRND
+                MENUITEM "~Frame Controls\tCtrl+F", IDM_FRAME_CTRL
+                }
+        SUBMENU "~Help",                        IDM_SUBMENU_HELP
+                {
+                MENUITEM "How to ~Play...",      IDM_HELP
+                MENUITEM SEPARATOR
+                MENUITEM "~About PM Robots...",  IDM_ABOUT
+                }
+        }
+
+ACCELTABLE ID_RESOURCE
+        {
+        "x",    IDM_EXIT,       CONTROL
+        "X",    IDM_EXIT,       CONTROL
+        "p",    IDM_PAUSE,      CONTROL
+        "P",    IDM_PAUSE,      CONTROL
+        "b",    IDM_BACKGRND,   CONTROL
+        "B",    IDM_BACKGRND,   CONTROL
+        "f",    IDM_FRAME_CTRL, CONTROL
+        "F",    IDM_FRAME_CTRL, CONTROL
+        }
 
 DLGTEMPLATE IDD_HELP
    {
-   DIALOG "Help for Presentation Manager Robots",0,16,12,320,124,, FCF_TITLEBAR|FCF_DLGBORDER
+   DIALOG "How to Play PM Robots",0,16,12,320,124,, FCF_TITLEBAR|FCF_DLGBORDER
       {
       CTEXT "Presentation Manager Robots"       -1, 60, 108, 200, 8
       ICON ID_RESOURCE,                          -1, 60, 100,   0, 0
@@ -72,15 +108,14 @@ DLGTEMPLATE IDD_HELP
 
 DLGTEMPLATE IDD_ABOUT
    {
-   DIALOG "About Presentation Manager Robots",0,32,24,240,100,, FCF_TITLEBAR|FCF_DLGBORDER
+   DIALOG "About PM Robots",0,32,24,240,110,, FCF_TITLEBAR|FCF_DLGBORDER
       {
-      CTEXT "Presentation Manager Robots v1.4"          -1, 30, 84, 180, 8
-      ICON ID_RESOURCE,                                  -1, 16, 76,   0, 0
-      CTEXT "This game is free software."                -1, 30, 68, 180, 8
-      CTEXT "Kent Lundberg"  				-1, 30, 58, 180, 8
-      CTEXT "Freely copy and distribute this program."  -1, 20, 44, 200, 8
-      CTEXT "For more information, see file GPL.TXT"  -1, 20, 36, 200, 8
-      CTEXT "for text of the General Public License."       -1, 20, 28, 200, 8
+      CTEXT "PM Robots for OS/2"                        -1, 30, 94, 180, 8
+      ICON ID_RESOURCE,                                  -1, 16, 84,   0, 0
+      CTEXT "Version 1.4"                                -1, 30, 78, 180, 8
+      CTEXT "(c) 1993,1994,2002 Kent Lundberg"           -1, 20, 62, 200, 8
+      CTEXT "Released as Open Source (GPL)"              -1, 20, 52, 200, 8
+      CTEXT "OpenWatcom build 2023"                      -1, 20, 42, 200, 8
       DEFPUSHBUTTON "OK"        DID_OK, 100, 8, 40, 12, WS_GROUP
       }
    }
@@ -165,4 +200,3 @@ DLGTEMPLATE IDD_CLEAR
       DEFPUSHBUTTON "OK, flush them."     DID_OK, 110, 8, 80, 12, WS_GROUP
       }
    }
-

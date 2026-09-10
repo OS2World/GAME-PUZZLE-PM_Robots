@@ -1,0 +1,6 @@
+;-------------------------------------
+; ROBOTS.DEF module definition file
+;-------------------------------------
+NAME        ROBOTS  WINDOWAPI
+STACKSIZE   65536
+HEAPSIZE    4096

@@ -5,6 +5,7 @@
  *  LICENSE: GNU GPL V3
  */
 
+#define INCL_DOSFILEMGR
 #include <os2.h>
 #include <string.h>
 #include "control.h"

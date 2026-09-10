@@ -1,0 +1,27 @@
+PM Robots - Changelog
+=====================
+
+1.4 (2023-06-09)
+- Rebuilt with Open Watcom wcc386 compiler
+- Restructured menus: Game / Options / Help standard layout
+- Added standard keyboard shortcuts: Ctrl+X (Exit), Ctrl+P (Pause),
+  Ctrl+B (Background Run), Ctrl+F (Frame Controls)
+- Added 6-language support: English, Spanish, Dutch, German, French, Italian
+- Added Options menu with Language submenu, Background Run, Frame Controls
+- Added settings persistence to robots.cfg
+- Added BLDLEVEL string
+- Centered window on desktop at startup
+- Moved help content to Help > How to Play
+
+1.3
+- Released as free software under GNU General Public License
+- Thanks to M. Iturbide (www.os2world.com/games) for asking
+
+1.2
+- Higher resolution support
+- Compiles with IBM Cset++
+
+1.1
+- Initial release
+- Released as postcardware
+- Compiles with free GCC/2 compiler

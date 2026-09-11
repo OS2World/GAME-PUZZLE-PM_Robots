@@ -32,7 +32,7 @@ void LoadHiScores(HISCORES *phs, GAMESTATE *pgs) {
    ULONG ulAction;
    ULONG ulBytesRead;
    ClearHiScores(phs);
-   if (DosOpen((PCSZ) HISCORESFILE,&hfile,&ulAction,0,FILE_NORMAL,LOAD_ACTION,READ_ATTRS,NULL)) return;
+   if (DosOpen((PSZ) HISCORESFILE,&hfile,&ulAction,0,FILE_NORMAL,LOAD_ACTION,READ_ATTRS,NULL)) return;
    DosRead(hfile,phs,sizeof(*phs),&ulBytesRead);
    DosClose(hfile);
    pgs->hiscore = (phs->score[9] == 0) ? 1 : phs->score[9];
@@ -47,7 +47,7 @@ void SaveHiScores(HISCORES *phs, GAMESTATE *pgs) {
    if (phs->clear) {
       ClearHiScores(phs);
       pgs->hiscore = 1;
-      if (DosOpen((PCSZ) HISCORESFILE,&hfile,&ulAction,sizeof(*phs),FILE_NORMAL,SAVE_ACTION,WRITE_ATTRS,NULL)) return;
+      if (DosOpen((PSZ) HISCORESFILE,&hfile,&ulAction,sizeof(*phs),FILE_NORMAL,SAVE_ACTION,WRITE_ATTRS,NULL)) return;
       DosWrite(hfile,phs,sizeof(*phs),&ulBytesRead);
       DosClose(hfile);
    }
@@ -63,7 +63,7 @@ void SaveHiScores(HISCORES *phs, GAMESTATE *pgs) {
       phs->level[scI] = pgs->level;
       strcpy(phs->name[scI],pgs->name);
       pgs->hiscore = (phs->score[9] == 0) ? 1 : phs->score[9];
-      if (DosOpen( (PCSZ) HISCORESFILE,&hfile,&ulAction,sizeof(*phs),FILE_NORMAL,SAVE_ACTION,WRITE_ATTRS,NULL)) return;
+      if (DosOpen( (PSZ) HISCORESFILE,&hfile,&ulAction,sizeof(*phs),FILE_NORMAL,SAVE_ACTION,WRITE_ATTRS,NULL)) return;
       DosWrite(hfile,phs,sizeof(*phs),&ulBytesRead);
       DosClose(hfile);
    }

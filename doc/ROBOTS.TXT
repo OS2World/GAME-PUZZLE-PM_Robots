@@ -1,111 +1,140 @@
-Name: 		ROBOTS
-Descripcion: 	Presentation Manager Robots
-Date: 		2023-06-09
-Version:	1.4
-----------------------------   
+Name:           ROBOTS
+Description:    Presentation Manager Robots
+Date:           2026-09-10
+Version:        1.5
+----------------------------
 
 
 DESCRIPTION
 -----------
-This program is a version of the classic UN*X game "robots" for     
+This program is a version of the classic UN*X game "robots" for
 the OS/2 Presentation Manager.  The main idea is that you are chased
-by robots, and the object to is make them crash into each other before 
+by robots, and the object is to make them crash into each other before
 they get you.
 
-It's Smiley against the Evil Killer Robots.  Smiley is hopelessly 
+It's Smiley against the Evil Killer Robots.  Smiley is hopelessly
 outnumbered, but with your intellect, you might be able to save him.
 Fortunately, for you and Smiley, the robots have the stupid habit of
 crashing into each other in their pursuit.
 
-Everytime you make a move, the robots move a space closer to Smiley.
+Every time you make a move, the robots move a space closer to Smiley.
 
-The tools that you have available to you are a Sonic Screwdriver and
-a Teleporter Device.  The Sonic Screwdriver obliterates all the robots
-adjacent to Smiley, but can only be used once per level.  The Teleporter 
-Device can be used to get Smiley out of a tight spot, but each time you
-use it, you run the risk of teleporting next to a robot (which spells
-certain doom for Smiley).
+The tools available to you are a Sonic Screwdriver and a Teleporter
+Device.  The Sonic Screwdriver obliterates all robots adjacent to
+Smiley, but can only be used once per level.  The Teleporter Device
+moves Smiley to a random open space, but each use risks landing next
+to a robot (certain doom for Smiley).
 
-Clicking the left mouse button moves Smiley in the direction of the 
-mouse pointer (a question mark means that Smiley can't move in that
-direction).  Available moves are shown by the green diamonds around
-Smiley.  Clicking directly over Smiley takes a turn without making
-a move (letting the robots catch up).  The menu bar provides access to 
-the Teleporter and the Sonic Screwdriver.  The "Wait" button (or the 
-right mouse button) takes turns until there is a robot breathing down
-Smiley's neck.
+Clicking the left mouse button moves Smiley in the direction of the
+mouse pointer (a question mark means Smiley cannot move that way).
+Available moves are shown by the green diamonds around Smiley.
+Clicking directly over Smiley takes a turn without making a move.
+The right mouse button is the same as pressing Wait.
 
-Points are awarded as follows : 10 points for every robot that crashes
-into another robot or into a robot heap, and 1 point for every robot 
+Points are awarded as follows: 10 points for every robot that crashes
+into another robot or into a heap, and 1 point for every robot
 obliterated with the Sonic Screwdriver.  Bonuses are awarded for not
-using the Sonic Screwdriver on a particular level (50 points) and for
-successful teleports (1 point per visible robot).
+using the Sonic Screwdriver on a level (50 points) and for successful
+teleports (1 point per visible robot).
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+CONTROLS
+--------
+Left mouse button   Move Smiley toward the pointer
+Right mouse button  Wait (same as Game > Wait)
+S                   Sonic Screwdriver
+T                   Teleport
+W                   Wait
+Ctrl+N              New Game
+Ctrl+X              Exit
+Ctrl+F              Frame Controls toggle (borderless mode)
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-Special thanks to Brian Warkentine for his inspirational XROBOTS.
-There are many versions of robots around, and all the authors deserve
-credit.  This version was written entirely from scratch, July 1993.
+MENUS
+-----
+Game
+  New Game     Ctrl+N
+  Sonic Screwdriver  S
+  Teleport           T
+  Wait               W
+  Exit         Ctrl+X
+
+Options
+  Language
+  High Scores...
+  Clear Scores...
+  Frame Controls  Ctrl+F
+
+Help
+  How to Play...
+  About PM Robots...
+
 
 REQUIREMENTS
 ------------
-This software requires libc and libcx.
-It is available on ArcaOS or/and can be installed with "yum install libc libcx" if you have ANPM installed. 
+- ArcaOS 5.x or OS/2 Warp 4
+- Open Watcom C/C++ compiler (for building from source)
+- OS/2 Toolkit 4.5 (for building from source)
 
-
-HISTORY
-----------
-- 1.4 - 2023-05-15
-Changed version to compile on gcc and to run on ArcaOS 5.0.7.
-
-- 1.3
-Released as free software under GNU General Public License
-Thanks to M. Iturbide (www.os2world.com/games) for asking.
-
-- 1.2
-Higher resolution support
-Compiles with IBM Cset++
-
-- 1.1
-Initial release
-Released as postcardware 
-Compiles with free GCC/2 compiler 
-
-LICENSE
--------
-GNU GPL V3
 
 COMPILE INSTRUCTIONS
 --------------------
-This version was modified to compile on ArcaOS with GCC 9 compiler. It also uses the Watcom Linker and Watcom Resource Compiler. 
+This version is built with the Open Watcom wcc386 compiler and wmake.
 
-The requeriments for compile this version are:
-- yum install git gcc make libc-devel binutils watcom-wrc watcom-wlink-hll
+Requirements:
+  - Open Watcom C/C++ installed at c:\watcom or c:\watcom2
+  - OS/2 Toolkit 4.5 installed at c:\os2tk45
 
-1) Remember to have correct header files your path. For GCC the correct ones are the included on the "libc-devel", not the ones from the OS/2 Toolkit. Check your config.sys for "SET INCLUDE=C:\usr\include"
+To build, run from the project root on ArcaOS:
 
-2) Since I'm using the Watcom Resource Compiler and Watcom Linker (open source) instead of the classic rc.exe and ilink.exe, add to your config.sys...
- SET EMXOMFLD_RC_TYPE=WRC
- SET EMXOMFLD_RC=wrc.exe
- SET EMXOMFLD_LINKER=wl.exe
- SET EMXOMFLD_TYPE=WLINK
+  compile-wat.cmd
 
-3) Run "make" to compile or "make 2>&1 |tee make.out" to compile and get the log file. A compile.cmd file was provided to run the compile process.
+Or directly:
+
+  wmake -f makefile.wat all
+
+Output is placed in bin\Robots.exe.
+
+
+CHANGELOG
+---------
+1.5 (2026-09-10)
+  Restructured menus: High Scores and Clear Scores moved to Options
+  Removed Pause, Background Run, Save Settings on Exit
+  Added keyboard shortcuts: S, T, W, Ctrl+N
+  Score/Level display right-justified in menu bar
+  Fixed window sizing and Frame Controls toggle
+  Resolved all compiler warnings
+
+1.4 (2023-06-09)
+  Rebuilt with Open Watcom wcc386 compiler
+  Restructured menus: Game / Options / Help standard layout
+  Added standard keyboard shortcuts: Ctrl+X (Exit), Ctrl+F (Frame Controls)
+  Added 6-language support: English, Spanish, Dutch, German, French, Italian
+  Added BLDLEVEL string
+  Centered window on desktop at startup
+
+1.3
+  Released as free software under GNU General Public License
+  Thanks to M. Iturbide (www.os2world.com/games) for asking
+
+1.2
+  Higher resolution support
+  Compiles with IBM Cset++
+
+1.1
+  Initial release
+  Released as postcardware
+  Compiles with free GCC/2 compiler
 
 
 AUTHORS
 -------
-- Martin Iturbide (2023)
-- Kent Lundberg
+- Kent Lundberg (original author, 1993-2002)
+- Martin Iturbide (2023-2026 — ArcaOS port and standardization)
+
+
+LICENSE
+-------
+GNU General Public License v3
+See doc\LICENSE.txt or https://www.gnu.org/licenses/gpl-3.0.txt

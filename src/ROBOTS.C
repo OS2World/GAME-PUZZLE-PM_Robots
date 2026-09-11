@@ -1,13 +1,15 @@
 /*  ROBOTS.C
- *  Presentation Manager Robots v1.4
+ *  Presentation Manager Robots v1.5
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
  *  LICENSE: GNU GPL V3
  */
 
+#pragma off(unreferenced)
 static const char bldlevel[] =
-    "@#Kent Lundberg:1.4#@##1## 09 Jun 2023 20:00:00      "
+    "@#Kent Lundberg:1.5#@##1## 10 Sep 2026 20:00:00      "
     "ARCAOS:::0::::@@PM Robots Game for OS/2\r\n\x1a";
+#pragma on(unreferenced)
 
 #define INCL_DOS
 #define INCL_GPI
@@ -29,122 +31,104 @@ const char *lang_strings[LANG_COUNT][STR_COUNT] = {
     /* LANG_EN */
     {
         "~Game",
-        "~New Game",
-        "~Sonic Screwdriver",
-        "~Teleport",
-        "~Wait",
+        "~New Game\tCtrl+N",
+        "~Sonic Screwdriver\tS",
+        "~Teleport\tT",
+        "~Wait\tW",
         "~High Scores...",
         "~Clear Scores...",
-        "~Pause\tCtrl+P",
         "E~xit\tCtrl+X",
         "~Options",
         "~Language",
-        "~Save settings on exit",
-        "~Background Run\tCtrl+B",
         "~Frame Controls\tCtrl+F",
         "~Help",
         "How to ~Play...",
-        "~About PM Robots...",
+        "~About...",
     },
     /* LANG_ES */
     {
         "~Juego",
-        "~Nuevo Juego",
-        "~Destornillador Sonico",
-        "~Teleportar",
-        "~Esperar",
+        "~Nuevo Juego\tCtrl+N",
+        "~Destornillador Sonico\tS",
+        "~Teleportar\tT",
+        "~Esperar\tW",
         "~Mejores Puntos...",
         "~Borrar Puntos...",
-        "~Pausa\tCtrl+P",
         "~Salir\tCtrl+X",
         "~Opciones",
         "~Idioma",
-        "~Guardar al salir",
-        "~Fondo Activo\tCtrl+B",
         "~Controles Marco\tCtrl+F",
         "~Ayuda",
         "~Como Jugar...",
-        "~Acerca de PM Robots...",
+        "~About...",
     },
     /* LANG_NL */
     {
         "~Spel",
-        "~Nieuw Spel",
-        "~Sonische Schroevendraaier",
-        "~Teleporteren",
-        "~Wachten",
+        "~Nieuw Spel\tCtrl+N",
+        "~Sonische Schroevendraaier\tS",
+        "~Teleporteren\tT",
+        "~Wachten\tW",
         "~Topscores...",
         "~Wis Scores...",
-        "~Pauze\tCtrl+P",
         "A~fsluiten\tCtrl+X",
         "~Opties",
         "~Taal",
-        "~Bewaar bij afsluiten",
-        "~Achtergrond Actief\tCtrl+B",
         "~Raambesturing\tCtrl+F",
         "~Hulp",
         "~Hoe te Spelen...",
-        "~Over PM Robots...",
+        "~About...",
     },
     /* LANG_DE */
     {
         "~Spiel",
-        "~Neues Spiel",
-        "~Schraubenzieher",
-        "~Teleportieren",
-        "~Warten",
+        "~Neues Spiel\tCtrl+N",
+        "~Schraubenzieher\tS",
+        "~Teleportieren\tT",
+        "~Warten\tW",
         "~Bestenliste...",
         "Liste ~loeschen...",
-        "~Pause\tCtrl+P",
         "~Beenden\tCtrl+X",
         "~Optionen",
         "~Sprache",
-        "Einstellungen ~speichern",
-        "~Hintergrundlauf\tCtrl+B",
         "~Rahmensteuerung\tCtrl+F",
         "~Hilfe",
         "~Spielanleitung...",
-        "~Ueber PM Robots...",
+        "~About...",
     },
     /* LANG_FR */
     {
         "~Jeu",
-        "~Nouveau Jeu",
-        "~Tournevis Sonique",
-        "~Teleporter",
-        "~Attendre",
+        "~Nouveau Jeu\tCtrl+N",
+        "~Tournevis Sonique\tS",
+        "~Teleporter\tT",
+        "~Attendre\tW",
         "~Meilleurs Scores...",
         "~Effacer Scores...",
-        "~Pause\tCtrl+P",
         "~Quitter\tCtrl+X",
         "~Options",
         "~Langue",
-        "~Sauvegarder a la sortie",
-        "~Arriere-plan Actif\tCtrl+B",
         "~Controles Cadre\tCtrl+F",
         "~Aide",
         "~Comment Jouer...",
-        "~A propos de PM Robots...",
+        "~About...",
     },
     /* LANG_IT */
     {
         "~Gioco",
-        "~Nuovo Gioco",
-        "~Cacciavite Sonico",
-        "~Teleportare",
-        "~Aspettare",
+        "~Nuovo Gioco\tCtrl+N",
+        "~Cacciavite Sonico\tS",
+        "~Teleportare\tT",
+        "~Aspettare\tW",
         "~Punteggi...",
         "~Cancella Punteggi...",
-        "~Pausa\tCtrl+P",
         "~Esci\tCtrl+X",
         "~Opzioni",
         "~Lingua",
-        "~Salva all uscita",
-        "~Esecuzione Sfondo\tCtrl+B",
         "~Controlli Cornice\tCtrl+F",
         "~Aiuto",
         "~Come Giocare...",
-        "~Informazioni su PM Robots...",
+        "~About...",
     },
 };
 
@@ -154,11 +138,7 @@ const char *lang_strings[LANG_COUNT][STR_COUNT] = {
 HAB     hab;
 int     sMapSize = 16;
 
-static BOOL saveonexit   = FALSE;
-static BOOL bPaused      = FALSE;
-static BOOL bBackgrndRun = FALSE;
 static BOOL bFrameHidden = FALSE;
-static BOOL bFocusPaused = FALSE;
 
 /* ------------------------------------------------------------------ */
 /* Forward declarations                                                */
@@ -180,7 +160,6 @@ void set_language(HWND hwndMenu, int lang);
 void load_settings(void) {
     FILE *f = fopen("robots.cfg", "rb");
     if (f) {
-        fread(&saveonexit,   sizeof(int), 1, f);
         fread(&current_lang, sizeof(int), 1, f);
         fclose(f);
         if (current_lang < 0 || current_lang >= LANG_COUNT) current_lang = 0;
@@ -190,7 +169,6 @@ void load_settings(void) {
 void save_settings(void) {
     FILE *f = fopen("robots.cfg", "wb");
     if (f) {
-        fwrite(&saveonexit,   sizeof(int), 1, f);
         fwrite(&current_lang, sizeof(int), 1, f);
         fclose(f);
     }
@@ -241,21 +219,15 @@ void set_language(HWND hwndMenu, int lang) {
     /* Update Game submenu */
     if (hwndGame) {
         WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_NEW),    MPFROMP(tr(STR_MENU_NEW)));
+                   MPFROMSHORT(IDM_NEW),   MPFROMP(tr(STR_MENU_NEW)));
         WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_SONIC),  MPFROMP(tr(STR_MENU_SONIC)));
+                   MPFROMSHORT(IDM_SONIC), MPFROMP(tr(STR_MENU_SONIC)));
         WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_TELEP),  MPFROMP(tr(STR_MENU_TELEP)));
+                   MPFROMSHORT(IDM_TELEP), MPFROMP(tr(STR_MENU_TELEP)));
         WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_WAIT),   MPFROMP(tr(STR_MENU_WAIT)));
+                   MPFROMSHORT(IDM_WAIT),  MPFROMP(tr(STR_MENU_WAIT)));
         WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_HSCORE), MPFROMP(tr(STR_MENU_HSCORES)));
-        WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_CLEAR),  MPFROMP(tr(STR_MENU_CLEAR)));
-        WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_PAUSE),  MPFROMP(tr(STR_MENU_PAUSE)));
-        WinSendMsg(hwndGame, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_EXIT),   MPFROMP(tr(STR_MENU_EXIT)));
+                   MPFROMSHORT(IDM_EXIT),  MPFROMP(tr(STR_MENU_EXIT)));
     }
 
     /* Update Options submenu */
@@ -263,9 +235,9 @@ void set_language(HWND hwndMenu, int lang) {
         WinSendMsg(hwndOpts, MM_SETITEMTEXT,
                    MPFROMSHORT(IDM_SUBMENU_LANG), MPFROMP(tr(STR_MENU_LANGUAGE)));
         WinSendMsg(hwndOpts, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_SAVEONEXIT),   MPFROMP(tr(STR_MENU_SAVEONEXIT)));
+                   MPFROMSHORT(IDM_HSCORE),       MPFROMP(tr(STR_MENU_HSCORES)));
         WinSendMsg(hwndOpts, MM_SETITEMTEXT,
-                   MPFROMSHORT(IDM_BACKGRND),     MPFROMP(tr(STR_MENU_BACKGRND)));
+                   MPFROMSHORT(IDM_CLEAR),        MPFROMP(tr(STR_MENU_CLEAR)));
         WinSendMsg(hwndOpts, MM_SETITEMTEXT,
                    MPFROMSHORT(IDM_FRAME_CTRL),   MPFROMP(tr(STR_MENU_FRAME)));
     }
@@ -307,22 +279,21 @@ int main(void) {
 
     hab = WinInitialize(0);
     hmq = WinCreateMsgQueue(hab, 0);
-    WinRegisterClass(hab, (PCSZ)szClassName, (PFNWP)ClientWndProc, CS_SIZEREDRAW, 0UL);
+    WinRegisterClass(hab, (PSZ)szClassName, (PFNWP)ClientWndProc, CS_SIZEREDRAW, 0UL);
 
     hwndFrame = WinCreateStdWindow(HWND_DESKTOP, 0L, &flStyle,
-                                   (PCSZ)szClassName, (PCSZ)"",
+                                   (PSZ)szClassName, (PSZ)"",
                                    0L, 0UL, ID_RESOURCE, &hwndClient);
-    WinSetWindowText(hwndFrame, (PCSZ)szWinTitle);
+    WinSetWindowText(hwndFrame, (PSZ)szWinTitle);
 
     /* Size window to map grid and center on desktop */
     {
-        RECTL rclTBar, rclMenu;
-        HWND hwndTBarW = WinWindowFromID(hwndFrame, FID_TITLEBAR);
-        HWND hwndMenuW = WinWindowFromID(hwndFrame, FID_MENU);
-        WinQueryWindowRect(hwndTBarW, &rclTBar);
-        WinQueryWindowRect(hwndMenuW, &rclMenu);
-        winW = (LONG)sMapSize * 35L + 2L;
-        winH = (LONG)sMapSize * 20L + 4L + rclTBar.yTop + rclMenu.yTop;
+        LONG cyTitle  = WinQuerySysValue(HWND_DESKTOP, SV_CYTITLEBAR);
+        LONG cyMenu   = WinQuerySysValue(HWND_DESKTOP, SV_CYMENU);
+        LONG cyBorder = WinQuerySysValue(HWND_DESKTOP, SV_CYBORDER);
+        LONG cxBorder = WinQuerySysValue(HWND_DESKTOP, SV_CXBORDER);
+        winW = (LONG)sMapSize * 35L + 2L * cxBorder;
+        winH = (LONG)sMapSize * 20L + cyTitle + cyMenu + 2L * cyBorder;
         x = (cxScreen - winW) / 2L;
         y = (cyScreen - winH) / 2L;
         if (x < 0L) x = 0L;
@@ -350,7 +321,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
     static HDC  hdcMemory = NULLHANDLE;
     static HWND hwndMenu;
     static HWND hwndOpts;
-    static HWND hwndGameSub;
+    static HWND hwndFrCache, hwndTB, hwndSM, hwndMM;
     static HBITMAP hbmPlayer, hbmRobot, hbmPlayerD, hbmHeap, hbmDiamond;
     static HPOINTER ahptr[13];
     static HISCORES hs;
@@ -367,8 +338,12 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
         {
             MENUITEM mi;
             hps = WinGetPS(hwnd);
-            hwndMenu = WinWindowFromID(WinQueryWindow(hwnd, QW_PARENT), FID_MENU);
-            hdcMemory = DevOpenDC(hab, OD_MEMORY, (PCSZ)"*", 0, NULL, NULLHANDLE);
+            hwndFrCache = WinQueryWindow(hwnd, QW_PARENT);
+            hwndMenu = WinWindowFromID(hwndFrCache, FID_MENU);
+            hwndTB   = WinWindowFromID(hwndFrCache, FID_TITLEBAR);
+            hwndSM   = WinWindowFromID(hwndFrCache, FID_SYSMENU);
+            hwndMM   = WinWindowFromID(hwndFrCache, FID_MINMAX);
+            hdcMemory = DevOpenDC(hab, OD_MEMORY, (PSZ)"*", 0, NULL, NULLHANDLE);
             hpsMemory = GpiCreatePS(hab, hdcMemory, &sizel,
                                     PU_PELS | GPIF_DEFAULT | GPIT_MICRO | GPIA_ASSOC);
             if (sMapSize == 24) icy = 5;
@@ -385,23 +360,23 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
             load_settings();
             set_language(hwndMenu, current_lang);
 
-            /* Cache Options and Game submenu handles for checkmarks */
+            /* Cache Options submenu handle for checkmarks */
             memset(&mi, 0, sizeof(mi));
             WinSendMsg(hwndMenu, MM_QUERYITEM,
                        MPFROM2SHORT(IDM_SUBMENU_OPTS, TRUE), MPFROMP(&mi));
             hwndOpts = mi.hwndSubMenu;
 
+            /* Right-justify the Score item in the menu bar */
             memset(&mi, 0, sizeof(mi));
             WinSendMsg(hwndMenu, MM_QUERYITEM,
-                       MPFROM2SHORT(IDM_GAME, TRUE), MPFROMP(&mi));
-            hwndGameSub = mi.hwndSubMenu;
+                       MPFROM2SHORT(IDM_SCORE, FALSE), MPFROMP(&mi));
+            mi.afStyle |= 0x4000;   /* MIS_RIGHTJUSTIFY */
+            WinSendMsg(hwndMenu, MM_SETITEM,
+                       MPFROM2SHORT(IDM_SCORE, FALSE), MPFROMP(&mi));
 
             /* Restore persisted checkmarks */
-            if (hwndOpts) {
-                WinCheckMenuItem(hwndOpts, IDM_SAVEONEXIT, saveonexit);
-                WinCheckMenuItem(hwndOpts, IDM_BACKGRND,   bBackgrndRun);
+            if (hwndOpts)
                 WinCheckMenuItem(hwndOpts, IDM_FRAME_CTRL, bFrameHidden);
-            }
 
             LoadHiScores(&hs, &gs);
             NewGame(&gs);
@@ -409,8 +384,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
         }
 
         case WM_DESTROY:
-            if (saveonexit)
-                save_settings();
+            save_settings();
             for (icx = 2; icx < 25; icx += 2)
                 WinDestroyPointer(ahptr[icx/2]);
             GpiDeleteBitmap(hbmPlayer);
@@ -532,26 +506,6 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
             }
             return 0L;
 
-        case WM_SETFOCUS:
-            if (!SHORT1FROMMP(mp2)) {
-                /* Losing focus */
-                if (!bBackgrndRun && gs.active && !bPaused) {
-                    bPaused      = TRUE;
-                    bFocusPaused = TRUE;
-                    if (hwndGameSub)
-                        WinCheckMenuItem(hwndGameSub, IDM_PAUSE, TRUE);
-                }
-            } else {
-                /* Gaining focus */
-                if (bFocusPaused && gs.active && bPaused) {
-                    bPaused = FALSE;
-                    if (hwndGameSub)
-                        WinCheckMenuItem(hwndGameSub, IDM_PAUSE, FALSE);
-                }
-                bFocusPaused = FALSE;
-            }
-            return 0L;
-
         case WM_MOUSEMOVE:
             icx = MOUSEMSG(&msg)->x;
             icy = MOUSEMSG(&msg)->y;
@@ -559,7 +513,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
             return 0L;
 
         case WM_BUTTON1UP:
-            if (gs.active && !bPaused) {
+            if (gs.active) {
                 icx = MOUSEMSG(&msg)->x;
                 icy = MOUSEMSG(&msg)->y;
                 MovePlayer(&gs, Direction(gs, icx, icy, sMapSize));
@@ -568,7 +522,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
             return 0L;
 
         case WM_BUTTON2UP:
-            if (gs.active && !bPaused) {
+            if (gs.active) {
                 if (!RobotAdjacent(gs))
                     do {
                         RobotChase(&gs);
@@ -586,52 +540,24 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
                     WinSendMsg(hwnd, WM_CLOSE, 0L, 0L);
                     return 0L;
 
-                case IDM_PAUSE:
-                    bPaused = !bPaused;
-                    if (bPaused) bFocusPaused = FALSE;
-                    if (hwndGameSub)
-                        WinCheckMenuItem(hwndGameSub, IDM_PAUSE, bPaused);
-                    return 0L;
-
-                case IDM_BACKGRND:
-                    bBackgrndRun = !bBackgrndRun;
-                    if (hwndOpts)
-                        WinCheckMenuItem(hwndOpts, IDM_BACKGRND, bBackgrndRun);
-                    return 0L;
-
                 case IDM_FRAME_CTRL:
                 {
-                    HWND hwndFr = WinQueryWindow(hwnd, QW_PARENT);
-                    HWND hwndTB = WinWindowFromID(hwndFr, FID_TITLEBAR);
-                    HWND hwndSM = WinWindowFromID(hwndFr, FID_SYSMENU);
-                    HWND hwndMM = WinWindowFromID(hwndFr, FID_MINMAX);
-                    HWND hwndMB = WinWindowFromID(hwndFr, FID_MENU);
                     HWND hwndTarget;
-
                     bFrameHidden = !bFrameHidden;
-                    hwndTarget   = bFrameHidden ? HWND_OBJECT : hwndFr;
-
-                    WinSetParent(hwndTB, hwndTarget, FALSE);
-                    WinSetParent(hwndSM, hwndTarget, FALSE);
-                    WinSetParent(hwndMM, hwndTarget, FALSE);
-                    WinSetParent(hwndMB, hwndTarget, FALSE);
-
-                    WinSendMsg(hwndFr, WM_UPDATEFRAME,
+                    hwndTarget   = bFrameHidden ? HWND_OBJECT : hwndFrCache;
+                    WinSetParent(hwndTB,   hwndTarget, FALSE);
+                    WinSetParent(hwndSM,   hwndTarget, FALSE);
+                    WinSetParent(hwndMM,   hwndTarget, FALSE);
+                    WinSetParent(hwndMenu, hwndTarget, FALSE);
+                    WinSendMsg(hwndFrCache, WM_UPDATEFRAME,
                                (MPARAM)(FCF_TITLEBAR | FCF_SYSMENU |
                                         FCF_MINBUTTON | FCF_MENU), NULL);
-                    WinInvalidateRect(hwndFr, NULL, TRUE);
-                    WinUpdateWindow(hwndFr);
-
+                    WinInvalidateRect(hwndFrCache, NULL, TRUE);
+                    WinUpdateWindow(hwndFrCache);
                     if (hwndOpts)
                         WinCheckMenuItem(hwndOpts, IDM_FRAME_CTRL, bFrameHidden);
                     return 0L;
                 }
-
-                case IDM_SAVEONEXIT:
-                    saveonexit = !saveonexit;
-                    if (hwndOpts)
-                        WinCheckMenuItem(hwndOpts, IDM_SAVEONEXIT, saveonexit);
-                    return 0L;
 
                 case IDM_LANG_EN:
                 case IDM_LANG_ES:
@@ -658,7 +584,6 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
                     return 0L;
 
                 case IDM_SONIC:
-                    if (bPaused) return 0L;
                     hps = WinGetPS(hwnd);
                     rcl.xLeft   = gs.playx*sMapSize - sMapSize;
                     rcl.yBottom = gs.playy*sMapSize - sMapSize;
@@ -674,7 +599,6 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
                     return 0L;
 
                 case IDM_TELEP:
-                    if (bPaused) return 0L;
                     Teleport(&gs);
                     if (!gs.active) {
                         WinSendMsg(hwndMenu, MM_SETITEMATTR,
@@ -699,7 +623,6 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
                     return 0L;
 
                 case IDM_WAIT:
-                    if (bPaused) return 0L;
                     do {
                         RobotChase(&gs);
                         WinInvalidateRect(hwnd, NULLHANDLE, FALSE);
@@ -790,7 +713,7 @@ MRESULT EXPENTRY GetNameDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
     switch (msg) {
         case WM_INITDLG:
             pgs = PVOIDFROMMP(mp2);
-            WinSetDlgItemText(hwnd, IDE_GETNAME, (PCSZ)pgs->name);
+            WinSetDlgItemText(hwnd, IDE_GETNAME, pgs->name);
             return 0L;
         case WM_COMMAND:
             switch (COMMANDMSG(&msg)->cmd) {
@@ -815,14 +738,14 @@ MRESULT EXPENTRY HiScoresDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
         case WM_INITDLG:
             phs = PVOIDFROMMP(mp2);
             for (ici = 0; ici < 10; ici++)
-                WinSetDlgItemText(hwnd, IDE_HS + ici, (PCSZ)phs->name[ici]);
+                WinSetDlgItemText(hwnd, IDE_HS + ici, phs->name[ici]);
             for (ici = 0; ici < 10; ici++) {
                 sprintf(sz, "%3i  ", phs->level[ici]);
-                WinSetDlgItemText(hwnd, IDE_HS + 10 + ici, (PCSZ)sz);
+                WinSetDlgItemText(hwnd, IDE_HS + 10 + ici, sz);
             }
             for (ici = 0; ici < 10; ici++) {
                 sprintf(sz, "%5i ", phs->score[ici]);
-                WinSetDlgItemText(hwnd, IDE_HS + 20 + ici, (PCSZ)sz);
+                WinSetDlgItemText(hwnd, IDE_HS + 20 + ici, sz);
             }
             return 0L;
         case WM_COMMAND:

@@ -1,6 +1,6 @@
 # GAME-PUZZLE-PM_Robots
 
-Version 1.4 — A version of the classic UN*X game "robots" for the OS/2 Presentation Manager.
+Version 1.5 — A version of the classic UN*X game "robots" for the OS/2 Presentation Manager.
 
 ![PMRobots Screenshot](doc/PMRobots_001.png)
 
@@ -14,9 +14,11 @@ each other or into heaps to score points.
 
 - **Left mouse button** — move Smiley toward the pointer
 - **Right mouse button** — wait (same as Game > Wait)
+- **S** — Sonic Screwdriver
+- **T** — Teleport
+- **W** — Wait
+- **Ctrl+N** — New Game
 - **Ctrl+X** — Exit
-- **Ctrl+P** — Pause / Resume
-- **Ctrl+B** — Background Run toggle
 - **Ctrl+F** — Frame Controls toggle (borderless mode)
 
 ## Build Instructions
@@ -54,7 +56,7 @@ GNU GPL V3
 ## Authors
 
 - Kent Lundberg (original author, 1993-2002)
-- Martin Iturbide (2023 — ArcaOS port and standardization)
+- Martin Iturbide (2023-2026 — ArcaOS port and standardization)
 
 ## Links
 

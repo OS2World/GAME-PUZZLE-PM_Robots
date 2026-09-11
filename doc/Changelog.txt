@@ -1,6 +1,17 @@
 PM Robots - Changelog
 =====================
 
+1.5 (2026-09-10)
+- Restructured menus: High Scores and Clear Scores moved to Options menu
+- Removed Pause menu item
+- Removed Background Run (not needed for this game type)
+- Removed Save Settings on Exit (language now always saved on exit)
+- Added keyboard shortcuts: S (Sonic Screwdriver), T (Teleport), W (Wait), Ctrl+N (New Game)
+- Score/Level display right-justified in menu bar
+- Fixed window sizing: client area now correctly sized using system metrics
+- Fixed Frame Controls toggle (Ctrl+F) to properly restore title bar and menu
+- Resolved all compiler warnings
+
 1.4 (2023-06-09)
 - Rebuilt with Open Watcom wcc386 compiler
 - Restructured menus: Game / Options / Help standard layout

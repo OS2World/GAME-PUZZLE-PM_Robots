@@ -16,8 +16,8 @@ RCFLAGS = -i=$(OS2TK)\h -i=src
 
 all : bin\Robots.exe
 
-bin\Robots.exe : bin\robots.obj bin\game.obj bin\hiscores.obj src\ROBOTS.DEF bin\robots.res
-    $(LINK) system os2v2 pm option stack=65536 option map=bin\Robots.map name bin\Robots.exe file bin\robots.obj, bin\game.obj, bin\hiscores.obj def src\ROBOTS.DEF
+bin\Robots.exe : bin\robots.obj bin\game.obj bin\hiscores.obj bin\robots.res
+    $(LINK) system os2v2 pm option stack=65536 option heapsize=4096 option map=bin\Robots.map name bin\Robots.exe file bin\robots.obj, bin\game.obj, bin\hiscores.obj
     $(RC) bin\robots.res bin\Robots.exe
 
 bin\robots.obj : src\ROBOTS.C src\CONTROL.H src\lang.h
@@ -33,9 +33,9 @@ bin\robots.res : src\ROBOTS.RC src\CONTROL.H
     $(RC) $(RCFLAGS) -r src\ROBOTS.RC -fo=bin\robots.res
 
 clean : .SYMBOLIC
-    del bin\robots.obj 2>NUL
-    del bin\game.obj 2>NUL
-    del bin\hiscores.obj 2>NUL
-    del bin\robots.res 2>NUL
-    del bin\Robots.exe 2>NUL
-    del bin\Robots.map 2>NUL
+    -del bin\robots.obj 2>NUL
+    -del bin\game.obj 2>NUL
+    -del bin\hiscores.obj 2>NUL
+    -del bin\robots.res 2>NUL
+    -del bin\Robots.exe 2>NUL
+    -del bin\Robots.map 2>NUL

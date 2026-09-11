@@ -13,6 +13,7 @@
 #define IDD_GETNAME     6
 #define IDE_GETNAME     7
 #define IDD_CLEAR       8
+#define IDA_ARTIE       9
 
 /* Game menu items (original IDs preserved) */
 #define IDM_GAME        20

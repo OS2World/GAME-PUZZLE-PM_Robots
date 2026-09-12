@@ -98,7 +98,7 @@ Output is placed in bin\Robots.exe.
 
 CHANGELOG
 ---------
-1.5 (2026-09-10)
+1.5 (2026-09-11)
   Restructured menus: High Scores and Clear Scores moved to Options
   Removed Pause, Background Run, Save Settings on Exit
   Added keyboard shortcuts: S, T, W, Ctrl+N

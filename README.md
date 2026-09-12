@@ -1,8 +1,8 @@
 # GAME-PUZZLE-PM_Robots
 
-Version 1.5 — A version of the classic UN*X game "robots" for the OS/2 Presentation Manager.
+A version of the classic UN*X game "robots" for the OS/2 Presentation Manager.
 
-![PMRobots Screenshot](doc/PMRobots_001.png)
+![PMRobots Screenshot](doc/PMRobots.png)
 
 ## Overview
 

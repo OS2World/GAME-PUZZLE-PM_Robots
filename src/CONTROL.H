@@ -1,5 +1,5 @@
 /*  CONTROL.H
- *  Presentation Manager Robots v1.4
+ *  Presentation Manager Robots v1.6
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
  *  LICENSE: GNU GPL V3
@@ -14,6 +14,12 @@
 #define IDE_GETNAME     7
 #define IDD_CLEAR       8
 #define IDA_ARTIE       9
+#define IDD_KEYMAP      12
+#define IDC_KM_HINT     120
+#define IDC_KM_HINTK    121
+#define IDC_KM_LABEL    130     /* +0..4 */
+#define IDC_KM_ENTRY    140     /* +0..4 */
+#define IDC_KM_DEFAULT  150
 
 /* Game menu items (original IDs preserved) */
 #define IDM_GAME        20
@@ -36,6 +42,7 @@
 #define IDM_BACKGRND    200
 #define IDM_FRAME_CTRL  201
 #define IDM_SAVEONEXIT  202
+#define IDM_KEYMAP      203
 
 /* Language submenu items (300-399) */
 #define IDM_LANG_EN     300

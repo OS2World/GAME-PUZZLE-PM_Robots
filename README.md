@@ -12,14 +12,19 @@ each other or into heaps to score points.
 
 ## Controls
 
-- **Left mouse button** — move Smiley toward the pointer
-- **Right mouse button** — wait (same as Game > Wait)
-- **S** — Sonic Screwdriver
-- **T** — Teleport
-- **W** — Wait
+- **Left mouse button** — move Smiley toward the pointer (default)
+- **Right mouse button** — wait (same as Game > Wait) (default)
+- **S** — Sonic Screwdriver (default)
+- **T** — Teleport (default)
+- **W** — Wait (default)
 - **Ctrl+N** — New Game
 - **Ctrl+X** — Exit
 - **Ctrl+F** — Frame Controls toggle (borderless mode)
+
+The mouse buttons and the keys for Wait, Sonic Screwdriver and Teleport can be
+changed in **Options > Key Mapping...** (version 1.6). Click a box, then click
+it again with the mouse button or press the key to use. The choice is saved in
+`robots.cfg` when **Save settings on exit** (Options menu, on by default) is checked.
 
 ## Build Instructions
 

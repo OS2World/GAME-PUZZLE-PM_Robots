@@ -1,5 +1,5 @@
 /*  FILES.C
- *  Presentation Manager Robots v1.4
+ *  Presentation Manager Robots v1.6
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
  *  LICENSE: GNU GPL V3

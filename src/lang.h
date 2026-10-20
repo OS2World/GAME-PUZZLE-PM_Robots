@@ -1,5 +1,5 @@
 /*  lang.h
- *  Presentation Manager Robots v1.4
+ *  Presentation Manager Robots v1.6
  *  6-language runtime string support
  *
  *  LICENSE: GNU GPL V3
@@ -31,6 +31,22 @@ enum {
     STR_MENU_HELP,
     STR_MENU_HOWTOPLAY,
     STR_MENU_ABOUT,
+    STR_MENU_KEYMAP,
+    STR_KM_TITLE,
+    STR_KM_HINT,
+    STR_KM_ACT0,
+    STR_KM_ACT1,
+    STR_KM_BTN1,
+    STR_KM_BTN2,
+    STR_KM_BTN3,
+    STR_KM_DEFAULT,
+    STR_DLG_OK,
+    STR_DLG_CANCEL,
+    STR_KM_HINTK,
+    STR_KM_ACT2,
+    STR_KM_ACT3,
+    STR_KM_ACT4,
+    STR_MENU_SAVEONEXIT,
     STR_COUNT
 };
 

@@ -1,6 +1,20 @@
 PM Robots - Changelog
 =====================
 
+1.6 (2026-10-20)
+- New Options > Key Mapping... dialog: choose the mouse button that moves
+  Smiley (default left) and the button that waits (default right), and the
+  keys for Wait (W), Sonic Screwdriver (S) and Teleport (T); a button or key
+  is never shared between two actions; Default restores the original ones
+- The Game menu shows the mapped keys; a disabled menu item disables its key
+- Mouse buttons and keys are saved in robots.cfg with the language
+- New "Save settings on exit" item at the end of the Options menu, on by
+  default (when it is off nothing is saved at exit)
+- The dialog is translated in all six languages
+- Fixed: makefile.wat now creates the bin folder (the build stopped when it
+  did not exist)
+- About dialog, BLDLEVEL string and documentation updated to version 1.6
+
 1.5 (2026-09-10)
 - Restructured menus: High Scores and Clear Scores moved to Options menu
 - Removed Pause menu item

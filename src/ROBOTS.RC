@@ -1,5 +1,5 @@
 /*  ROBOTS.RC
- *  Presentation Manager Robots v1.4
+ *  Presentation Manager Robots v1.6
  *  Copyright (c) 1993,1994,2002 by Kent Lundberg
  *
  *  LICENSE: GNU GPL V3
@@ -48,6 +48,7 @@ MENU ID_RESOURCE
                 }
         SUBMENU "~Options",                     IDM_SUBMENU_OPTS
                 {
+                MENUITEM "~Key Mapping...",     IDM_KEYMAP
                 SUBMENU "~Language",            IDM_SUBMENU_LANG
                         {
                         MENUITEM "English",      IDM_LANG_EN
@@ -62,6 +63,8 @@ MENU ID_RESOURCE
                 MENUITEM "~Clear Scores...",        IDM_CLEAR
                 MENUITEM SEPARATOR
                 MENUITEM "~Frame Controls\tCtrl+F", IDM_FRAME_CTRL
+                MENUITEM SEPARATOR
+                MENUITEM "~Save settings on exit",  IDM_SAVEONEXIT
                 }
         SUBMENU "~Help",                        IDM_SUBMENU_HELP
                 {
@@ -80,12 +83,6 @@ ACCELTABLE ID_RESOURCE
         "N",    IDM_NEW,        CONTROL
         "f",    IDM_FRAME_CTRL, CONTROL
         "F",    IDM_FRAME_CTRL, CONTROL
-        "s",    IDM_SONIC
-        "S",    IDM_SONIC
-        "t",    IDM_TELEP
-        "T",    IDM_TELEP
-        "w",    IDM_WAIT
-        "W",    IDM_WAIT
         }
 
 DLGTEMPLATE IDD_HELP
@@ -94,8 +91,8 @@ DLGTEMPLATE IDD_HELP
       {
       CTEXT "Presentation Manager Robots"       -1, 60, 108, 200, 8
       ICON ID_RESOURCE,                          -1, 60, 100,   0, 0
-      CTEXT "Keep Smiley alive by keeping"      -1, 10,  92, 300, 8
-      CTEXT "him away from the Killer Robots."  -1, 10,  84, 300, 8
+      CTEXT "Keep Smiley alive by keeping him away from the Killer Robots." -1, 10, 92, 300, 8
+      CTEXT "The mouse buttons and keys can be changed in Options > Key Mapping." -1, 10, 84, 300, 8
       CTEXT "The left mouse button moves Smiley in the direction of the pointer." -1, 10, 68, 300, 8
       CTEXT "Clicking directly over Smiley takes a turn without making a move."   -1, 10, 60, 300, 8
       CTEXT "The ""Sonic Screwdriver"" vaporizes robots adjacent to Smiley."      -1, 10, 52, 300, 8
@@ -111,7 +108,7 @@ DLGTEMPLATE IDD_ABOUT
    DIALOG "About PM Robots",0,32,24,240,110,, FCF_TITLEBAR|FCF_DLGBORDER
       {
       CTEXT "PM Robots for OS/2",                 -1, 10, 90, 220, 8
-      CTEXT "Version 1.5",                         -1, 10, 78, 220, 8
+      CTEXT "Version 1.6",                         -1, 10, 78, 220, 8
       CTEXT "OpenWatcom Release",                  -1, 10, 66, 220, 8
       CTEXT "(c) 1993, 1994, 2002, Kent Lundberg", -1, 10, 54, 220, 8
       CTEXT "(c) 2026, OS2World",                  -1, 10, 42, 220, 8
@@ -198,5 +195,28 @@ DLGTEMPLATE IDD_CLEAR
       CTEXT "Plus, it's really, really rude."   -1, 30, 28, 140, 8
       DEFPUSHBUTTON "Don't do it!"    DID_CANCEL, 10, 8, 80, 12, WS_GROUP
       DEFPUSHBUTTON "OK, flush them."     DID_OK, 110, 8, 80, 12, WS_GROUP
+      }
+   }
+
+DLGTEMPLATE IDD_KEYMAP
+   {
+   DIALOG "Key Mapping", IDD_KEYMAP, 32, 20, 260, 166,, FCF_TITLEBAR | FCF_DLGBORDER
+      PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+      {
+      LTEXT       "Click the box, then click it again with the mouse button to use.", IDC_KM_HINT, 8, 144, 244, 18, DT_WORDBREAK
+      LTEXT       "Move toward the pointer",        IDC_KM_LABEL+0,   8, 126, 124,  8
+      ENTRYFIELD  "",                               IDC_KM_ENTRY+0, 136, 124, 116, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP | WS_GROUP
+      LTEXT       "Wait for the robots",            IDC_KM_LABEL+1,   8, 108, 124,  8
+      ENTRYFIELD  "",                               IDC_KM_ENTRY+1, 136, 106, 116, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+      LTEXT       "Click the box, then press the key to use.", IDC_KM_HINTK, 8, 84, 244, 18, DT_WORDBREAK
+      LTEXT       "Wait",                           IDC_KM_LABEL+2,   8, 66, 124,  8
+      ENTRYFIELD  "",                               IDC_KM_ENTRY+2, 136, 64, 116, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+      LTEXT       "Sonic Screwdriver",              IDC_KM_LABEL+3,   8, 48, 124,  8
+      ENTRYFIELD  "",                               IDC_KM_ENTRY+3, 136, 46, 116, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+      LTEXT       "Teleport",                       IDC_KM_LABEL+4,   8, 30, 124,  8
+      ENTRYFIELD  "",                               IDC_KM_ENTRY+4, 136, 28, 116, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+      DEFPUSHBUTTON "OK",                           DID_OK,           8,  6,  76, 14, WS_GROUP
+      PUSHBUTTON    "Cancel",                       DID_CANCEL,      92,  6,  76, 14
+      PUSHBUTTON    "Default",                      IDC_KM_DEFAULT, 176,  6,  76, 14
       }
    }

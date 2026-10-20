@@ -14,6 +14,10 @@ OS2TK  = c:\os2tk45
 CFLAGS  = -bt=os2 -mf -5 -fpi -Oaxt -W3 -ze -d0 -i=$(OS2TK)\h -i=src
 RCFLAGS = -i=$(OS2TK)\h -i=src
 
+# the output folder is not in the repository: create it
+.BEFORE
+    @if not exist bin mkdir bin
+
 all : bin\Robots.exe
 
 bin\Robots.exe : bin\robots.obj bin\game.obj bin\hiscores.obj bin\robots.res

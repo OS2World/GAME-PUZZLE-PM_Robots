@@ -1,7 +1,7 @@
 Name:           ROBOTS
 Description:    Presentation Manager Robots
-Date:           2026-09-10
-Version:        1.5
+Date:           2026-10-20
+Version:        1.6
 ----------------------------
 
 
@@ -25,11 +25,12 @@ Smiley, but can only be used once per level.  The Teleporter Device
 moves Smiley to a random open space, but each use risks landing next
 to a robot (certain doom for Smiley).
 
-Clicking the left mouse button moves Smiley in the direction of the
+Clicking the left mouse button (the default) moves Smiley in the direction of the
 mouse pointer (a question mark means Smiley cannot move that way).
 Available moves are shown by the green diamonds around Smiley.
 Clicking directly over Smiley takes a turn without making a move.
-The right mouse button is the same as pressing Wait.
+The right mouse button (the default) is the same as pressing Wait.
+The mouse buttons and the keys can be changed in Options > Key Mapping.
 
 Points are awarded as follows: 10 points for every robot that crashes
 into another robot or into a heap, and 1 point for every robot
@@ -40,30 +41,52 @@ teleports (1 point per visible robot).
 
 CONTROLS
 --------
-Left mouse button   Move Smiley toward the pointer
-Right mouse button  Wait (same as Game > Wait)
-S                   Sonic Screwdriver
-T                   Teleport
-W                   Wait
+Left mouse button   Move Smiley toward the pointer (default)
+Right mouse button  Wait (same as Game > Wait) (default)
+S                   Sonic Screwdriver (default)
+T                   Teleport (default)
+W                   Wait (default)
 Ctrl+N              New Game
 Ctrl+X              Exit
 Ctrl+F              Frame Controls toggle (borderless mode)
+
+
+KEY MAPPING
+-----------
+Options > Key Mapping... lets you choose:
+  - the mouse button that moves Smiley toward the pointer (default left)
+  - the mouse button that waits (default right)
+  - the keys for Wait, Sonic Screwdriver and Teleport (default W, S, T)
+
+To set a mouse button, click its box, then click it again with the mouse
+button you want to use.  To set a key, click its box, then press the key.
+Letters, digits, punctuation, Space, F1-F24, the arrow keys, PgUp/PgDn,
+Home/End and Ins/Del can be used (not combined with Ctrl or Alt).  Two
+actions never share a button or a key: if you give an action the button or
+key of another one, the other action takes the one you replaced.  Default
+restores the original buttons and keys.  OK keeps the changes, Cancel
+discards them.  The Game menu shows the keys in use.  The choice is saved in
+robots.cfg when the game ends, if Options > Save settings on exit is
+checked (it is on by default).  The dialog is available in English,
+Spanish, Dutch, German, French and Italian.
 
 
 MENUS
 -----
 Game
   New Game     Ctrl+N
-  Sonic Screwdriver  S
+  Sonic Screwdriver  S   (the keys shown follow the Key Mapping)
   Teleport           T
   Wait               W
   Exit         Ctrl+X
 
 Options
+  Key Mapping...
   Language
   High Scores...
   Clear Scores...
   Frame Controls  Ctrl+F
+  Save settings on exit
 
 Help
   How to Play...
@@ -98,6 +121,13 @@ Output is placed in bin\Robots.exe.
 
 CHANGELOG
 ---------
+1.6 (2026-10-20)
+  New Options > Key Mapping...: mouse buttons (move, wait) and keys
+  (Wait, Sonic Screwdriver, Teleport), saved in robots.cfg, six languages
+  The Game menu shows the mapped keys
+  Options > Save settings on exit (on by default)
+  makefile.wat creates the bin folder
+
 1.5 (2026-09-11)
   Restructured menus: High Scores and Clear Scores moved to Options
   Removed Pause, Background Run, Save Settings on Exit
